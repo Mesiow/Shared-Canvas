@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const server = require('http').createServer(app);
+const io = require("socket.io")(server);
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + '/public'));
@@ -9,6 +11,25 @@ app.get("/", (req, res) => {
     res.render("main");
 });
 
-app.listen(process.env.PORT || 4000, () => {
+server.listen(process.env.PORT || 4000, () => {
     console.log("Server listening...");
 });
+
+
+var connectedUsers = [];
+var maxPeers = 2;
+
+//socket.io 
+io.on("connection", (socket) => {
+    console.log("a user connected");
+    console.log(socket.id)
+
+    if(connectedUsers.length < maxPeers){
+        connectedUsers.push(socket.id);
+    }else{
+        //Tell new client who is trying to join, that it's full
+        io.to(socket.id).emit("Server Full");
+    }
+});
+
+

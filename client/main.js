@@ -8,6 +8,16 @@ const customCursor = new Cursor({
     browserCursor: false, // default = true
 });
 */
+var socket = io();
+
+socket.on("connect", () => {
+    console.log(socket.connected);
+    console.log(socket.id);
+});
+
+socket.on("Server Full", () => {
+    console.log("Server is full, connection denied");
+});
 
 var canvas;
 var canvasRect;
@@ -52,7 +62,6 @@ function init(){
 function getMousePosition(e){
     let mx = e.offsetX * canvas.width() / canvas.innerWidth() | 0;
     let my = e.offsetY * canvas.height() / canvas.innerHeight() | 0;
-    console.log(mx, my);
     return {x: mx, y: my};
 }
 
