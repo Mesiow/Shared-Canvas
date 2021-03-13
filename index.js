@@ -23,9 +23,13 @@ var maxPeers = 2;
 io.on("connection", (socket) => {
     console.log("a user connected");
     console.log(socket.id)
-
+    console.log("Connected users: ", connectedUsers.length);
     if(connectedUsers.length < maxPeers){
         connectedUsers.push(socket.id);
+
+        socket.on("join", (data) => {
+            console.log(data);
+        });
     }else{
         //Tell new client who is trying to join, that it's full
         io.to(socket.id).emit("Server Full");
