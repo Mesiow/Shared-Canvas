@@ -8,17 +8,7 @@ const customCursor = new Cursor({
     browserCursor: false, // default = true
 });
 */
-var socket = io();
 
-socket.on("connect", () => {
-    console.log(socket.connected);
-    console.log(socket.id);
-    socket.emit("join", "Hello world from client");
-});
-
-socket.on("Server Full", () => {
-    console.log("Server is full, connection denied");
-});
 
 var canvas;
 var canvasRect;
@@ -51,7 +41,6 @@ function init(){
     });
 
     canvas.on('mouseup', function(e){
-
         findxy('up', e);
     });
 

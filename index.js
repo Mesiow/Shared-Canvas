@@ -15,25 +15,35 @@ server.listen(process.env.PORT || 4000, () => {
     console.log("Server listening...");
 });
 
-
+//////////////////////////////////
 var connectedUsers = [];
 var maxPeers = 2;
 
+const setupClientEvents = (socket) => {
+     //On Client join event
+     socket.on("join", (data) => {
+        console.log(data);
+    });
+    //On client disconnect event
+    socket.on("disconnect", () => {
+        let i = connectedUsers.indexOf(socket.id);
+        connectedUsers.splice(i, 1);
+        console.log("removed user ", i);
+        console.log("Users size: ", connectedUsers.length);
+    });
+};
+
 //socket.io 
 io.on("connection", (socket) => {
-    console.log("a user connected");
-    console.log(socket.id)
-    console.log("Connected users: ", connectedUsers.length);
     if(connectedUsers.length < maxPeers){
         connectedUsers.push(socket.id);
-
-        socket.on("join", (data) => {
-            console.log(data);
-        });
+        setupClientEvents(socket);
     }else{
         //Tell new client who is trying to join, that it's full
         io.to(socket.id).emit("Server Full");
     }
+
+    console.log("Connected users: ", connectedUsers.length);
 });
 
 
