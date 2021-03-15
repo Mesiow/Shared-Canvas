@@ -10,3 +10,12 @@ socket.on("connect", () => {
 socket.on("Server Full", () => {
     console.log("Server is full, connection denied");
 });
+
+//Receive peer data
+socket.on("PeerData", (data) => {
+    fill(data.x, data.y);
+});
+
+function sendPeerData(posX, posY){
+    socket.emit("PeerData", {x: posX, y: posY});
+}

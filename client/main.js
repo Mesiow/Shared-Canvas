@@ -9,7 +9,6 @@ const customCursor = new Cursor({
 });
 */
 
-
 var canvas;
 var canvasRect;
 var ctx;
@@ -80,6 +79,9 @@ function findxy(res, e){
             ctx.fillRect(currX, currY, 1, 1);
             ctx.closePath();
             dotflag = false;
+
+            //send peer data to server
+            sendPeerData(currX, currY);
         }
     }
     if(res == 'up' || res == 'out'){
@@ -94,6 +96,14 @@ function findxy(res, e){
             draw();
         }
     }
+}
+
+//fill a rect at a position received from the network
+function fill(posX, posY){
+    ctx.beginPath();
+    ctx.fillStyle = "black";
+    ctx.fillRect(posX, posY, 1, 1);
+    ctx.closePath();
 }
 
 $(document).ready(function(){

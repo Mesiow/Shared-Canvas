@@ -31,9 +31,18 @@ const setupClientEvents = (socket) => {
         console.log("removed user ", i);
         console.log("Users size: ", connectedUsers.length);
     });
+
+    socket.on("PeerData", (data) => {
+        //Send new data to every other connected peer
+        for(let i = 0; i < connectedUsers.length; ++i){
+            //Don't send to peer who fired this event
+            if(connectedUsers[i] != socket.id){
+                io.to(connectedUsers[i]).emit("PeerData", {x: data.x, y: data.y});
+            }
+        }
+    });
 };
 
-//socket.io 
 io.on("connection", (socket) => {
     if(connectedUsers.length < maxPeers){
         connectedUsers.push(socket.id);
