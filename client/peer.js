@@ -12,10 +12,19 @@ socket.on("Server Full", () => {
 });
 
 //Receive peer data
-socket.on("PeerData", (data) => {
+socket.on("PeerDataPoint", (data) => {
     fill(data.x, data.y);
 });
 
-function sendPeerData(posX, posY){
-    socket.emit("PeerData", {x: posX, y: posY});
+socket.on("PeerDataLine", (data) => {
+    drawFrom(data.px, data.py, data.x, data.y);
+});
+
+function sendPeerDataPoint(posX, posY){
+    socket.emit("PeerDataPoint", {x: posX, y: posY});
+}
+
+function sendPeerDataLine(prevX, prevY, currX, currY){
+    socket.emit("PeerDataLine", 
+    {prevx: prevX, prevy: prevY, currx: currX, curry: currY});
 }

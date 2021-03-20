@@ -64,6 +64,17 @@ function draw(){
     ctx.closePath();
 }
 
+//Draw function for network use
+function drawFrom(px, py, x, y){
+    ctx.beginPath();
+    ctx.moveTo(px, py);
+    ctx.lineTo(x, y);
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    ctx.closePath();
+}
+
 function findxy(res, e){
     if(res == 'down'){
         prevX = currX;
@@ -81,7 +92,7 @@ function findxy(res, e){
             dotflag = false;
 
             //send peer data to server
-            sendPeerData(currX, currY);
+            sendPeerDataPoint(currX, currY);
         }
     }
     if(res == 'up' || res == 'out'){
@@ -94,6 +105,8 @@ function findxy(res, e){
             currX = getMousePosition(e).x;
             currY = getMousePosition(e).y;
             draw();
+
+            sendPeerDataLine(prevX, prevY, currX, currY);
         }
     }
 }
