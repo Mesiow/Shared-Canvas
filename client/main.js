@@ -13,6 +13,7 @@ var canvas;
 var canvasRect;
 var ctx;
 var width, height;
+var penColor = "black";
 
 var prevX = 0;
 var prevY = 0;
@@ -58,7 +59,7 @@ function draw(){
     ctx.beginPath();
     ctx.moveTo(prevX, prevY);
     ctx.lineTo(currX, currY);
-    ctx.strokeStyle = "black";
+    ctx.strokeStyle = penColor;
     ctx.lineWidth = 2;
     ctx.stroke();
     ctx.closePath();
@@ -69,7 +70,7 @@ function drawFrom(px, py, x, y){
     ctx.beginPath();
     ctx.moveTo(px, py);
     ctx.lineTo(x, y);
-    ctx.strokeStyle = "black";
+    ctx.strokeStyle = penColor;
     ctx.lineWidth = 2;
     ctx.stroke();
     ctx.closePath();
@@ -86,7 +87,7 @@ function findxy(res, e){
         dotflag = true;
         if(dotflag){
             ctx.beginPath();
-            ctx.fillStyle = "black";
+            ctx.fillStyle = penColor;
             ctx.fillRect(currX, currY, 1, 1);
             ctx.closePath();
             dotflag = false;
@@ -114,11 +115,14 @@ function findxy(res, e){
 //fill a rect at a position received from the network
 function fill(posX, posY){
     ctx.beginPath();
-    ctx.fillStyle = "black";
+    ctx.fillStyle = penColor;
     ctx.fillRect(posX, posY, 1, 1);
     ctx.closePath();
 }
 
 $(document).ready(function(){
     init();
+    $("#colr").change(function(){
+       penColor = $(this).val();
+    });
 });
