@@ -1,34 +1,14 @@
 <%-include("partials/header")%>
 
 <div class="container">
-    <canvas id="canvas" width="600" height="300"></canvas>
+    <canvas id="canvas" width="700" height="400"></canvas>
     <div class="tool-container">
       <div id="color-picker">
-        <input type="color" id="colr" style="width: 100%;">
-        <label for="colr" style="margin-left: 20px;">Pen Color</label>
+        <input type="color" id="colr">
       </div>
+      <!--<label for="colr" style="margin-left: 20px;">Pen Color</label>-->
     </div>
 </div>
-<!--
-<div class="container">
-    <div class="row" style="border:2px solid black;">
-      <div class="col">
-        <canvas id="canvas" style=""></canvas>
-      </div>
-    </div>
-    <div class="row" style="border:2px solid black;">
-        <div class="col">
-          1 of 3
-        </div>
-        <div class="col">
-          2 of 3
-        </div>
-        <div class="col">
-          3 of 3
-        </div>
-      </div>
-  </div>-->
-
 
     <script src="http://localhost:4000/socket.io/socket.io.js"></script>
     <script src="/peer.js"></script>

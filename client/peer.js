@@ -13,18 +13,21 @@ socket.on("Server Full", () => {
 
 //Receive peer data
 socket.on("PeerDataPoint", (data) => {
-    fill(data.x, data.y);
+    fill(data.color, data.x, data.y);
 });
 
 socket.on("PeerDataLine", (data) => {
-    drawFrom(data.px, data.py, data.x, data.y);
+    drawFrom(data.color, data.px, data.py, data.x, data.y);
 });
 
-function sendPeerDataPoint(posX, posY){
-    socket.emit("PeerDataPoint", {x: posX, y: posY});
+function sendPeerDataPoint(color, posX, posY){
+    socket.emit("PeerDataPoint", {color: color, x: posX, y: posY});
 }
 
-function sendPeerDataLine(prevX, prevY, currX, currY){
+function sendPeerDataLine(lineColor, prevX, prevY, currX, currY){
     socket.emit("PeerDataLine", 
-    {prevx: prevX, prevy: prevY, currx: currX, curry: currY});
+    {   color: lineColor,
+        prevx: prevX, prevy: prevY,
+        currx: currX, curry: currY
+    });
 }

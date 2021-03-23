@@ -65,12 +65,12 @@ function draw(){
     ctx.closePath();
 }
 
-//Draw function for network use
-function drawFrom(px, py, x, y){
+//Draw line function for network use
+function drawFrom(color, px, py, x, y){
     ctx.beginPath();
     ctx.moveTo(px, py);
     ctx.lineTo(x, y);
-    ctx.strokeStyle = penColor;
+    ctx.strokeStyle = color;
     ctx.lineWidth = 2;
     ctx.stroke();
     ctx.closePath();
@@ -93,7 +93,7 @@ function findxy(res, e){
             dotflag = false;
 
             //send peer data to server
-            sendPeerDataPoint(currX, currY);
+            sendPeerDataPoint(penColor, currX, currY);
         }
     }
     if(res == 'up' || res == 'out'){
@@ -107,15 +107,15 @@ function findxy(res, e){
             currY = getMousePosition(e).y;
             draw();
 
-            sendPeerDataLine(prevX, prevY, currX, currY);
+            sendPeerDataLine(penColor, prevX, prevY, currX, currY);
         }
     }
 }
 
 //fill a rect at a position received from the network
-function fill(posX, posY){
+function fill(color, posX, posY){
     ctx.beginPath();
-    ctx.fillStyle = penColor;
+    ctx.fillStyle = color;
     ctx.fillRect(posX, posY, 1, 1);
     ctx.closePath();
 }

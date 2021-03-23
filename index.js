@@ -37,7 +37,8 @@ const setupClientEvents = (socket) => {
         for(let i = 0; i < connectedUsers.length; ++i){
             //Don't send to peer who fired this event
             if(connectedUsers[i] != socket.id){
-                io.to(connectedUsers[i]).emit("PeerDataPoint", {x: data.x, y: data.y});
+                io.to(connectedUsers[i]).emit("PeerDataPoint", 
+                {color: data.color, x: data.x, y: data.y});
             }
         }
     });
@@ -48,7 +49,10 @@ const setupClientEvents = (socket) => {
             //Don't send to peer who fired this event
             if(connectedUsers[i] != socket.id){
                 io.to(connectedUsers[i]).emit("PeerDataLine", 
-                {px: data.prevx, py: data.prevy, x: data.currx, y: data.curry});
+                {
+                 color: data.color,
+                 px: data.prevx, py: data.prevy,
+                 x: data.currx, y: data.curry});
             }
         }
     });
