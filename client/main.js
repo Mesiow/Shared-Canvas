@@ -125,4 +125,8 @@ $(document).ready(function(){
     $("#colr").change(function(){
        penColor = $(this).val();
     });
+    $("#canvas").mouseover(function(){
+        $(this).css('cursor', 'url(pen.cur), auto');
+        console.log("mouse over");
+    });
 });

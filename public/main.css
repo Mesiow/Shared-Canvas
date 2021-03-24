@@ -2,6 +2,10 @@ html{
     background-color: #BA292E;
 }
 
+body{
+    /*cursor: url('./pen.svg'), auto; */
+}
+
 .container{
     /*display:flex;
     flex-direction: column;
