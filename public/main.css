@@ -2,10 +2,6 @@ html{
     background-color: #BA292E;
 }
 
-body{
-    /*cursor: url('./pen.svg'), auto; */
-}
-
 .container{
     /*display:flex;
     flex-direction: column;
@@ -14,6 +10,7 @@ body{
 
 
 #canvas{
+    border-radius: 10px;
     background-color: whitesmoke;
     border: 3px solid gray;
     z-index: 10;
@@ -25,6 +22,10 @@ body{
     -moz-transform: translate(-50%, -55%);
     -ms-transform: translate(-50%, -55%);
     -o-transform: translate(-50%, -55%);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }
 
 .tool-container{
@@ -47,10 +48,43 @@ body{
 }
 
 #colr{
+    cursor:pointer;
     position:absolute;
     right: -8px;
     top: -8px;
     width: 56px;
     height: 56px;
     border: none;
+}
+
+#clear-canvas-btn{
+    background-color: #555555;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    border:none;
+    font-size: 16px;
+    outline: none;
+    padding: 15px 25px;
+    box-shadow: 0 9px #999;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+#clear-canvas-btn:hover{
+    background-color: #3f3f3f;
+    cursor:pointer;
+}
+
+#clear-canvas-btn:active{
+  background-color: #3f3f3f;
+  box-shadow: 0 1px #666;
+  transform: translateY(6px);
+  -webkit-transform: translateY(6px);
+  -moz-transform: translateY(6px);
+  -ms-transform: translateY(6px);
+  -o-transform: translateY(6px);
 }

@@ -24,6 +24,7 @@ var flag = false;
 var dotflag = false;
 
 
+
 function init(){
     canvas = $("#canvas");
     ctx = canvas[0].getContext('2d');
