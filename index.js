@@ -56,6 +56,16 @@ const setupClientEvents = (socket) => {
             }
         }
     });
+
+    socket.on("ClearCanvas", () => {
+         //Send new data to every other connected peer
+         for(let i = 0; i < connectedUsers.length; ++i){
+            //Don't send to peer who fired this event
+            if(connectedUsers[i] != socket.id){
+                io.to(connectedUsers[i]).emit("ClearCanvas");
+            }
+        }
+    });
 };
 
 io.on("connection", (socket) => {

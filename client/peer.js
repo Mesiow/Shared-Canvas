@@ -20,6 +20,10 @@ socket.on("PeerDataLine", (data) => {
     drawFrom(data.color, data.px, data.py, data.x, data.y);
 });
 
+socket.on("ClearCanvas", () => {
+    clear();
+});
+
 function sendPeerDataPoint(color, posX, posY){
     socket.emit("PeerDataPoint", {color: color, x: posX, y: posY});
 }
@@ -30,4 +34,8 @@ function sendPeerDataLine(lineColor, prevX, prevY, currX, currY){
         prevx: prevX, prevy: prevY,
         currx: currX, curry: currY
     });
+}
+
+function sendClearCanvasEvent(){
+    socket.emit("ClearCanvas");
 }

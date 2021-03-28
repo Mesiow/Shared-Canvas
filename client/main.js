@@ -121,13 +121,25 @@ function fill(color, posX, posY){
     ctx.closePath();
 }
 
+//clears the canvas: used locally and over the network
+function clear(){
+    ctx.clearRect(0, 0, canvas.width(), canvas.height());
+}
+
 $(document).ready(function(){
     init();
     $("#colr").change(function(){
        penColor = $(this).val();
     });
+
     $("#canvas").mouseover(function(){
         $(this).css('cursor', 'url(pen.cur), auto');
-        console.log("mouse over");
     });
+
+    $("#clear-canvas-btn").on("click", function(){
+        clear();
+        //Send network event for other connected peer to clear their canvas
+        sendClearCanvasEvent();
+    });
+
 });
