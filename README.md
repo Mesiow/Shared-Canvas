@@ -5,3 +5,5 @@ A Node.js collaborative canvas drawing application
  - ejs
  - socket.io
  - socket.io-client
+
+![](shared_canvas.gif)
